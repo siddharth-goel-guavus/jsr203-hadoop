@@ -25,6 +25,7 @@ import static java.nio.file.StandardOpenOption.WRITE;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
@@ -74,7 +75,7 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileUtil;
 
-public class HadoopFileSystem extends FileSystem {
+public class HadoopFileSystem extends FileSystem implements Serializable {
 
   private static final String GLOB_SYNTAX = "glob";
   private static final String REGEX_SYNTAX = "regex";
@@ -367,7 +368,7 @@ public class HadoopFileSystem extends FileSystem {
 	    return new HadoopFileChannel(newByteChannel(path, options, attrs));
 	}
 
-	SeekableByteChannel newByteChannel(org.apache.hadoop.fs.Path path,
+	public SeekableByteChannel newByteChannel(org.apache.hadoop.fs.Path path,
             Set<? extends OpenOption> options,
             FileAttribute<?>... attrs) throws IOException
     {

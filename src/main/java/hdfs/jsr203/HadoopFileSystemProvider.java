@@ -16,6 +16,7 @@
 package hdfs.jsr203;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URI;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SeekableByteChannel;
@@ -46,7 +47,7 @@ import org.apache.hadoop.fs.PathFilter;
  *
  * <p>This provider implements the actual {@code META-INF/services/} entry.
  */
-public class HadoopFileSystemProvider extends FileSystemProvider {
+public class HadoopFileSystemProvider extends FileSystemProvider implements Serializable {
 
   public static final String SCHEME = "hdfs";
 
